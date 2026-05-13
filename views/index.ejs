@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title><%= title %></title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-red-600 via-gray-900 to-black text-white">
+
+  <main class="max-w-4xl mx-auto px-4 py-8">
+
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-3">
+        ⚽ Quiz Bundesliga IA
+      </h1>
+      <p class="text-gray-200">
+        Testez vos connaissances sur le football allemand.
+      </p>
+    </header>
+
+    <!-- Carte principale -->
+    <section class="bg-white text-gray-900 rounded-2xl shadow-2xl p-6 md:p-8">
+
+      <!-- Menu -->
+      <div id="menuScreen">
+        <h2 class="text-2xl font-bold text-center mb-6">
+          Choisissez votre quiz
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <label class="block font-semibold mb-2">Catégorie</label>
+            <select id="categorySelect" class="w-full border rounded-lg p-3">
+              <option value="general">Général</option>
+              <option value="clubs">Clubs</option>
+              <option value="joueurs">Joueurs</option>
+              <option value="histoire">Histoire</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-semibold mb-2">Nombre de questions</label>
+            <select id="countSelect" class="w-full border rounded-lg p-3">
+              <option value="5">5 questions</option>
+              <option value="7">7 questions</option>
+              <option value="10">10 questions</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4 mb-8">
+          <button onclick="startQuiz('facile')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl transition">
+            ⭐ Facile
+          </button>
+
+          <button onclick="startQuiz('moyen')" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-xl transition">
+            ⭐⭐ Moyen
+          </button>
+
+          <button onclick="startQuiz('difficile')" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-xl transition">
+            ⭐⭐⭐ Difficile
+          </button>
+        </div>
+
+        <!-- Statistics -->
+        <div class="bg-gray-100 rounded-xl p-5">
+          <h3 class="font-bold text-xl mb-3">📊 Vos statistiques</h3>
+
+          <div class="grid md:grid-cols-3 gap-4 text-center">
+            <div class="bg-white p-4 rounded-lg">
+              <p class="text-gray-500">Quiz joués</p>
+              <p id="statsTotal" class="text-2xl font-bold">0</p>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg">
+              <p class="text-gray-500">Score moyen</p>
+              <p id="statsAverage" class="text-2xl font-bold">0%</p>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg">
+              <p class="text-gray-500">Meilleur score</p>
+              <p id="statsBest" class="text-2xl font-bold">0%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div id="loadingScreen" class="hidden text-center py-16">
+        <div class="animate-spin mx-auto mb-5 h-14 w-14 border-4 border-red-600 border-t-transparent rounded-full"></div>
+        <h2 class="text-2xl font-bold">Génération du quiz...</h2>
+        <p class="text-gray-600 mt-2">Veuillez patienter quelques secondes.</p>
+      </div>
+
+      <!-- Quiz -->
+      <div id="quizScreen" class="hidden">
+        <div class="mb-6">
+          <div class="flex justify-between mb-2 text-sm text-gray-600">
+            <span id="questionCounter">Question 1/5</span>
+            <span id="sourceBadge" class="font-semibold"></span>
+          </div>
+
+          <div class="w-full bg-gray-200 rounded-full h-3">
+            <div id="progressBar" class="bg-red-600 h-3 rounded-full transition-all" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <h2 id="questionText" class="text-2xl font-bold mb-6"></h2>
+
+        <div id="optionsContainer" class="space-y-3 mb-8"></div>
+
+        <div class="flex gap-3">
+          <button onclick="previousQuestion()" id="previousBtn" class="flex-1 bg-gray-400 hover:bg-gray-500 text-white font-bold py-3 rounded-lg">
+            ← Précédent
+          </button>
+
+          <button onclick="nextQuestion()" id="nextBtn" class="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-300 text-white font-bold py-3 rounded-lg">
+            Suivant →
+          </button>
+        </div>
+      </div>
+
+      <!-- Résultats -->
+      <div id="resultsScreen" class="hidden">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold mb-4">🎉 Résultats</h2>
+
+          <div class="inline-flex items-center justify-center w-44 h-44 rounded-full bg-red-600 text-white mb-4">
+            <div>
+              <p id="scorePercent" class="text-5xl font-bold">0%</p>
+              <p id="scoreText" class="text-lg">0/0</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-100 rounded-xl p-5 mb-6">
+          <h3 class="text-xl font-bold mb-3">🤖 Analyse</h3>
+          <p id="analysisMessage" class="mb-4"></p>
+
+          <h4 class="font-bold mb-2">Conseils :</h4>
+          <ul id="tipsList" class="list-disc pl-6 space-y-1"></ul>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-xl font-bold mb-3">Correction détaillée</h3>
+          <div id="detailsList" class="space-y-3"></div>
+        </div>
+
+        <div class="flex gap-3">
+          <button onclick="returnToMenu()" class="flex-1 bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 rounded-lg">
+            Retour menu
+          </button>
+
+          <button onclick="restartLastQuiz()" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg">
+            Rejouer
+          </button>
+        </div>
+      </div>
+
+      <!-- Erreur -->
+      <div id="errorScreen" class="hidden text-center py-10">
+        <h2 class="text-2xl font-bold text-red-600 mb-4">Erreur</h2>
+        <p id="errorMessage" class="mb-6"></p>
+
+        <button onclick="returnToMenu()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg">
+          Retour
+        </button>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "bundesliga-quiz-generator",
+  "version": "1.0.0",
+  "description": "An AI-powered quiz generator for football quizzes and personalized learning experiences for the Bundesliga app.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "football",
+    "quiz",
+    "AI",
+    "Bundesliga"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.5.4",
+    "express": "^4.17.1",
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.6",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.7"
+  }
+}
