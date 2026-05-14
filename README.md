@@ -1,8 +1,8 @@
-# ⚽ Bundesliga Quiz AI
+ Bundesliga Quiz AI
 
 Un quiz interactif sur la Bundesliga allemande alimenté par l'intelligence artificielle. Testez vos connaissances sur le football allemand avec des questions générées dynamiquement par OpenAI.
 
-## 🌟 Fonctionnalités
+ Fonctionnalités
 
 - **Quiz personnalisé** : Choisissez la difficulté (Facile, Moyen, Difficile)
 - **Catégories multiples** : Général, Clubs, Joueurs, Histoire
@@ -11,15 +11,15 @@ Un quiz interactif sur la Bundesliga allemande alimenté par l'intelligence arti
 - **Statistiques** : Suivi des performances et historique des quiz
 - **Interface responsive** : Design moderne avec Tailwind CSS
 
-## 🚀 Démarrage rapide
+ Démarrage rapide
 
-### Prérequis
+ Prérequis
 
 - Node.js (version 16 ou supérieure)
 - npm ou yarn
 - Clé API OpenAI (optionnelle, pour le mode IA)
 
-### Installation
+Installation
 
 1. **Clonez le repository**
    ```bash
@@ -56,7 +56,7 @@ Un quiz interactif sur la Bundesliga allemande alimenté par l'intelligence arti
 5. **Accédez à l'application**
    Ouvrez votre navigateur à l'adresse : `http://localhost:3000`
 
-## 📁 Structure du projet
+Structure du projet
 
 ```
 aws-challenge/
@@ -79,7 +79,7 @@ aws-challenge/
 └── README.md
 ```
 
-## 🎮 Utilisation
+Utilisation
 
 1. **Sélection du quiz** : Choisissez la difficulté et la catégorie
 2. **Nombre de questions** : Définissez entre 5, 7 ou 10 questions
@@ -87,21 +87,21 @@ aws-challenge/
 4. **Résultats** : Consultez votre score et l'analyse IA
 5. **Statistiques** : Suivez vos performances dans l'historique
 
-## 🤖 Mode IA vs Mode Local
+Mode IA vs Mode Local
 
-### Mode IA (avec OpenAI)
+ Mode IA (avec OpenAI)
 - Questions générées dynamiquement
 - Analyse personnalisée des résultats
 - Conseils adaptés à votre niveau
 
-### Mode Local (sans API)
+ Mode Local (sans API)
 - Questions prédéfinies sur la Bundesliga
 - Fonctionne sans connexion internet
 - Analyse basique des performances
 
-## 🔧 Configuration
+ Configuration
 
-### Variables d'environnement
+Variables d'environnement
 
 | Variable | Description | Défaut |
 |----------|-------------|---------|
@@ -109,20 +109,20 @@ aws-challenge/
 | `OPENAI_API_KEY` | Clé API OpenAI | - |
 | `OPENAI_MODEL` | Modèle OpenAI utilisé | `gpt-4o-mini` |
 
-### Difficultés disponibles
+Difficultés disponibles
 
 - **Facile** : Questions basiques pour débutants
 - **Moyen** : Questions intermédiaires
 - **Difficile** : Questions avancées pour experts
 
-### Catégories
+ Catégories
 
 - **Général** : Questions diverses sur la Bundesliga
 - **Clubs** : Focus sur les équipes et stades
 - **Joueurs** : Questions sur les footballeurs célèbres
 - **Histoire** : Événements historiques et records
 
-## 🛠️ Technologies utilisées
+ Technologies utilisées
 
 - **Backend** : Node.js, Express.js
 - **Frontend** : HTML5, CSS3, JavaScript (Vanilla)
@@ -131,7 +131,7 @@ aws-challenge/
 - **IA** : OpenAI GPT-4
 - **Déploiement** : AWS (potentiellement)
 
-## 📊 API Endpoints
+API Endpoints
 
 ### Quiz
 - `GET /` - Page principale
@@ -139,13 +139,13 @@ aws-challenge/
 - `POST /api/quiz/submit` - Soumet les réponses du quiz
 - `GET /api/health` - Vérification de l'état du serveur
 
-## 🧪 Tests
+ Tests
 
 ```bash
 npm test
 ```
 
-## 🚀 Déploiement
+ Déploiement
 
 ### Sur AWS
 1. Configurez votre instance EC2
@@ -159,29 +159,11 @@ npm install -g pm2
 pm2 start server.js --name "bundesliga-quiz"
 ```
 
-## 🤝 Contribution
 
-1. Fork le projet
-2. Créez votre branche feature (`git checkout -b feature/AmazingFeature`)
-3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`)
-4. Push vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrez une Pull Request
 
-## 📝 Licence
+## Auteur
 
-Ce projet est sous licence ISC. Voir le fichier `LICENSE` pour plus de détails.
+Daniella Lonyama
 
-## 👥 Auteur
-
-**Votre Nom** - *Développeur principal*
-
-## 🙏 Remerciements
-
-- OpenAI pour l'API GPT
-- La communauté Bundesliga
-- Tailwind CSS pour le framework CSS
-- Express.js pour le framework backend
-
----
 
 ⭐ Si ce projet vous plaît, n'hésitez pas à lui donner une étoile !
